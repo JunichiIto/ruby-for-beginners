@@ -125,19 +125,19 @@ class SamplesTest < Minitest::Test
       end
     end
 
-    assert_output "1\n2\n3\n4\n5\n" * 2 do
-      numbers = [1, 2, 3, 4, 5]
-      strings = []
+    assert_output "8\n9\na\nb\nc\n" * 2 do
+      numbers = [8, 9, 10, 11, 12]
+      hex_numbers = []
       numbers.each do |n|
-        strings << n.to_s
+        hex_numbers << n.to_s(16)
       end
-      puts strings # => ['1', '2', '3', '4', '5']
+      puts hex_numbers # => ['8', '9', 'a', 'b', 'c']
 
-      numbers = [1, 2, 3, 4, 5]
-      strings = numbers.map do |n|
-        n.to_s
+      numbers = [8, 9, 10, 11, 12]
+      hex_numbers = numbers.map do |n|
+        n.to_s(16)
       end
-      puts strings # => ['1', '2', '3', '4', '5']
+      puts hex_numbers # => ['8', '9', 'a', 'b', 'c']
     end
 
     assert_output "1\n3\n5\n" * 2 do
