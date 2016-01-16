@@ -41,25 +41,35 @@ class SamplesTest < Minitest::Test
       puts 'hello'
     RUBY
 
-    assert_syntax <<-RUBY
-      # userに画像が設定されていればその画像のURLを、なければno-image.jpgを返す
-      def user_image_url(user)
-        if !user.image.nil?
-          user.image.url # return は付けない
-        else
-          '/images/no-image.jpg' # return は付けない
-        end
+    def fizz_buzz(n)
+      if n % 5 == 0 && n % 3 == 0
+        'Fizz Buzz'
+      elsif n % 3 == 0
+        'Fizz'
+      elsif n % 5 == 0
+        'Buzz'
+      else
+        n
       end
-    RUBY
+    end
+
+    assert_equal 1, fizz_buzz(1)
+    assert_equal 2, fizz_buzz(2)
+    assert_equal 'Fizz', fizz_buzz(3)
+    assert_equal 4, fizz_buzz(4)
+    assert_equal 'Buzz', fizz_buzz(5)
+    assert_equal 'Fizz Buzz', fizz_buzz(15)
 
     assert_syntax <<-RUBY
-      def valid_status?(user)
-        # 管理者であればステータスを検証しない
-        if user.admin?
-          return true
+      def go_to_school(date)
+        # 土曜日と日曜日は何もしない
+        if date.saturday? || date.sunday?
+          return
         end
 
-        # 処理が続く ...
+        self.get_up
+        self.eat_breakfast
+        # 処理が続く...
       end
     RUBY
 
