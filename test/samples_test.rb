@@ -62,8 +62,8 @@ class SamplesTest < Minitest::Test
 
     assert_syntax <<-RUBY
       def go_to_school(date)
-        # 土曜日と日曜日は何もしない
         if date.saturday? || date.sunday?
+          # 土曜日と日曜日は何もせずメソッドを抜ける
           return
         end
 
