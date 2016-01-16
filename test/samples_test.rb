@@ -121,6 +121,16 @@ class SamplesTest < Minitest::Test
     result = hello 'Alice'
     assert_equal 'Hello, Alice!', result
 
+    assert_output "yen\nyen\n" do
+      currencies = { 'japan' => 'yen', 'america' => 'dollar', 'italy' => 'euro' }
+      currencies['india'] = 'rupee'
+      puts currencies['japan'] # => 'yen'
+
+      currencies = { japan: 'yen', america: 'dollar', italy: 'euro' }
+      currencies[:india] = 'rupee'
+      puts currencies[:japan] # => 'yen'
+    end
+
     assert_output "apple\nmelon\nbanana\n" * 2 do
       fruits = ['apple', 'melon', 'banana']
 
@@ -255,5 +265,17 @@ class SamplesTest < Minitest::Test
       puts matrix.dig(1, 0, 2) # => nil
       puts matrix.dig(2, 0, 2) # => 300
     end
+
+    # 配列で find を使う
+    numbers = [11, 12, 13, 14, 15]
+    target = numbers.find { |n| n % 3 == 0 }
+    puts target # => 12
+    assert_equal 12, target
+
+    # ハッシュで find を使う
+    currencies = { japan: 'yen', america: 'dollar', italy: 'euro' }
+    target = currencies.find { |key, value| value == 'dollar' }
+    puts target # => [:america, 'dollar']
+    assert_equal [:america, 'dollar'], target
   end
 end
