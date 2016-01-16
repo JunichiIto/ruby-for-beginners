@@ -43,11 +43,11 @@ class SamplesTest < Minitest::Test
 
     assert_syntax <<-RUBY
       # userに画像が設定されていればその画像のURLを、なければno-image.jpgを返す
-      def user_image(user)
+      def user_image_url(user)
         if !user.image.nil?
           user.image.url # return は付けない
         else
-          'no-image.jpg' # return は付けない
+          '/images/no-image.jpg' # return は付けない
         end
       end
     RUBY
