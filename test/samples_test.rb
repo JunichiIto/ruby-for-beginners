@@ -118,17 +118,18 @@ class SamplesTest < Minitest::Test
       # "Hello, " + name + "!" ではなく、式展開を使う方がベター
       "Hello, #{name}!"
     end
-    assert_equal 'Hello, Alice!', hello('Alice')
+    result = hello 'Alice'
+    assert_equal 'Hello, Alice!', result
 
     assert_output "apple\nmelon\nbanana\n" * 2 do
       fruits = ['apple', 'melon', 'banana']
 
-      # each メソッドを使ってループ処理を行う
+      # 繰り返し処理は each メソッドを使うのが一般的
       fruits.each do |fruit|
         puts fruit
       end
 
-      # 単純なループ処理で for ループが登場することは滅多にない
+      # 単純な繰り返し処理で for ループが登場することはまずない
       for fruit in fruits
         puts fruit
       end
