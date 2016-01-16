@@ -266,16 +266,20 @@ class SamplesTest < Minitest::Test
       puts matrix.dig(2, 0, 2) # => 300
     end
 
-    # 配列で find を使う
-    numbers = [11, 12, 13, 14, 15]
-    target = numbers.find { |n| n % 3 == 0 }
-    puts target # => 12
-    assert_equal 12, target
+    assert_output "12\namerica\ndollar\n" do
+      # 配列で find を使う
+      numbers = [11, 12, 13, 14, 15]
+      target = numbers.find { |n| n % 3 == 0 }
+      puts target # => 12
+      assert_equal 12, target
+      assert numbers.method(:find).to_s =~ /Enumerable/
 
-    # ハッシュで find を使う
-    currencies = { japan: 'yen', america: 'dollar', italy: 'euro' }
-    target = currencies.find { |key, value| value == 'dollar' }
-    puts target # => [:america, 'dollar']
-    assert_equal [:america, 'dollar'], target
+      # ハッシュで find を使う
+      currencies = { japan: 'yen', america: 'dollar', italy: 'euro' }
+      target = currencies.find { |key, value| value == 'dollar' }
+      puts target # => [:america, 'dollar']
+      assert_equal [:america, 'dollar'], target
+      assert currencies.method(:find).to_s =~ /Enumerable/
+    end
   end
 end
