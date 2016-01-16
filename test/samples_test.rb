@@ -114,12 +114,11 @@ class SamplesTest < Minitest::Test
       end
     end
 
-    assert_syntax <<-RUBY
-      def hello(name)
-        # "Hello, " + name + " !" ではなく、式展開を使う方がベター
-        "Hello, #{name} !"
-      end
-    RUBY
+    def hello(name)
+      # "Hello, " + name + "!" ではなく、式展開を使う方がベター
+      "Hello, #{name}!"
+    end
+    assert_equal 'Hello, Alice!', hello('Alice')
 
     assert_output "apple\nmelon\nbanana\n" * 2 do
       fruits = ['apple', 'melon', 'banana']
