@@ -182,30 +182,20 @@ class SamplesTest < Minitest::Test
       odd_numbers = numbers.select(&:odd?)
     end
 
-    assert_output "5\n3\n" * 2 do
-      points = [
-          [1, 4],
-          [6, 8],
-          [5, 3],
-          [7, 3],
-      ]
+    assert_output "109\n109\n" do
+      numbers = [98, 90, 109, 94, 102]
       target = nil
-      points.each do |x, y|
-        if x.odd? && y.odd?
-          target = [x, y]
+      numbers.each do |n|
+        if n > 100
+          target = n
           break
         end
       end
-      puts target # => [5, 3]
+      puts target # => 109
 
-      points = [
-          [1, 4],
-          [6, 8],
-          [5, 3],
-          [7, 3],
-      ]
-      target = points.find { |x, y| x.odd? && y.odd? }
-      puts target # => [5, 3]
+      numbers = [98, 90, 109, 94, 102]
+      target = numbers.find { |n| n > 100 }
+      puts target # => 109
     end
 
     assert_syntax <<-RUBY
