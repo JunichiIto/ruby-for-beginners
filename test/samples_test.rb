@@ -20,13 +20,13 @@ class SamplesTest < Minitest::Test
 
     assert_syntax <<-RUBY
       class UserProfile
-        # 引数や変数はスネークケース。phoneNumberのようなキャメルケースにはしない
+        # phoneNumber のようなキャメルケースの引数名・変数名はNG
         def initialize(name, phone_number)
           @name = name
           @phone_number = phone_number
         end
 
-        # メソッド名はスネークケース。firstNameのようなキャメルケースにはしない
+        # firstName のようなキャメルケースのメソッド名はNG
         def first_name
           @name.split(' ').first
         end
@@ -61,8 +61,9 @@ class SamplesTest < Minitest::Test
     assert_equal 'Fizz Buzz', fizz_buzz(15)
 
     assert_syntax <<-RUBY
-      def go_to_school(date)
-        if date.saturday? || date.sunday?
+      def go_to_school
+        today = Date.today
+        if today.saturday? || today.sunday?
           # 土曜日と日曜日は何もせずメソッドを抜ける
           return
         end
