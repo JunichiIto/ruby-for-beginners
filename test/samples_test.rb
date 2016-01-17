@@ -84,6 +84,9 @@ class SamplesTest < Minitest::Test
       unless user.admin?
         send_notification_to(user)
       end
+
+      # if と同様、後ろに置くこともできる
+      send_notification_to(user) unless user.admin?
     RUBY
 
     assert_syntax <<-RUBY
