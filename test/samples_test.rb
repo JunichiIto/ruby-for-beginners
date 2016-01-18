@@ -90,6 +90,12 @@ class SamplesTest < Minitest::Test
     RUBY
 
     assert_syntax <<-RUBY
+      # 普通の if を使った場合
+      if user.age < 20
+        puts 'お酒は20歳になってから！'
+      end
+
+      # if 修飾子を使った場合
       puts 'お酒は20歳になってから！' if user.age < 20
     RUBY
 
@@ -119,7 +125,7 @@ class SamplesTest < Minitest::Test
     end
 
     def hello(name)
-      # "Hello, " + name + "!" ではなく、式展開を使う方がベター
+      # "Hello, " + name + "!" ではなく、式展開を使う
       "Hello, #{name}!"
     end
     result = hello 'Alice'
@@ -202,7 +208,7 @@ class SamplesTest < Minitest::Test
     end
 
     assert_syntax <<-RUBY
-      # userはnilの可能性があるのでチェックする
+      # userはnilの可能性があるのでガード条件を付ける
       unless user.nil?
         user.say 'Hello!'
       end
