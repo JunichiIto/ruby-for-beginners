@@ -136,6 +136,7 @@ class SamplesTest < Minitest::Test
       currencies['india'] = 'rupee'
       puts currencies['japan'] # => 'yen'
 
+      # ハッシュのキーにシンボルを使う
       currencies = { japan: 'yen', america: 'dollar', italy: 'euro' }
       currencies[:india] = 'rupee'
       puts currencies[:japan] # => 'yen'
